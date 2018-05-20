@@ -37,7 +37,7 @@ class RotorTableR
 		
 	
 	private:
-		/*void scan(bool dir, IRrecv irrecv);*/
+		//void scan(bool dir, IRrecv irrecv);
 		int _stepPin, _directionPin, _enablePin;
 		int _irrecvPin;
 		decode_results _irRes;

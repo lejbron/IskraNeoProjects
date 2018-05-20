@@ -7,7 +7,9 @@
 #include "RotorTableR.h"
 
 RotorTableR::RotorTableR(const byte stepPin, const byte directionPin, const byte enablePin)
-{	
+{
+	//irrecv.enableIRIn();
+	
 	pinMode(stepPin, OUTPUT);
 	pinMode(directionPin, OUTPUT);
 	pinMode(enablePin, OUTPUT);
@@ -73,3 +75,48 @@ void RotorTableR::stepLeft() {
   digitalWrite(_enablePin, LOW);
   Serial.println("=== CounterClockwise step func end ===");
 }
+
+/*void RotorTableR::stopScan()
+{
+	Serial.println("Stop func entered");
+	_scanStopFlag = true;
+	digitalWrite(_stepPin, LOW);
+	digitalWrite(_enablePin, LOW);
+}
+
+void RotorTableR::rightScan(IRrecv irrecv)
+{
+	_scanStopFlag = false;
+	scan(true, irrecv);
+}
+
+void RotorTableR::leftScan(IRrecv irrecv)
+{
+	_scanStopFlag = false;
+	scan(false, irrecv);
+}
+
+void RotorTableR::scan(bool dir, IRrecv irrecv)
+{
+	irrecv.enableIRIn();
+//включаем двигатель
+	digitalWrite(_enablePin, HIGH);
+// Для каждого из необходимого количества снимков...
+	for (int i = 0; i < SHOTS_COUNT; ++i) {
+		if(!_scanStopFlag) {
+      // Поворачиваем столик на необходимое количество шагов
+		if(dir)
+			stepRight();
+		if(!dir)
+			stepLeft();
+		if(irrecv.decode( &_irRes ) && _irRes.value == B_STOP) {
+			Serial.println("Stop try");
+			stopScan();
+		}
+		irrecv.resume();
+    }
+  }
+  
+// После завершения съёмки отключаем двигатель
+ digitalWrite(_enablePin, LOW);
+}*/
