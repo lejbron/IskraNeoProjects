@@ -5,16 +5,18 @@
 #define IR_LEFT 0xFF10EF
 #define IR_SCAN_RIGHT 0xFF18E7
 #define IR_SCAN_LEFT 0xFF4AB5
-#define STOP_SCAN 0xFF38C7
+#define B_STOP 0xFF38C7
 #define B_PRESSED 0xFFFFFFFF
 
 #define MAX_HOLD_TIME 100 //miliseconds
 
-#define SHOTS_COUNT 5
+#define SHOTS_COUNT 15
 
 IRrecv irConsole(5);
 
 decode_results irRes;
+
+bool scanStopFlag = false;
 
 // Troyka-Stepper подключён к следующим пинам:
 const byte stepPin = 3;
@@ -60,6 +62,16 @@ void loop() {
         }        
         lastPressTime = millis();
         break;
+  case IR_SCAN_RIGHT:
+        scan(true);
+        Serial.println("Right scan entered ");
+        Serial.println(irRes.value, HEX ); 
+        break;
+    case IR_SCAN_LEFT:
+        scan(false);
+        Serial.println("Left scan entered ");
+        Serial.println(irRes.value, HEX ); 
+        break;
     }    
     irConsole.resume(); // принимаем следующую команду
   }
@@ -79,14 +91,6 @@ void loop() {
 // false - counterclockwise
 void rotateT(bool dir) {
   Serial.println("=== Table rotation func entered ===");
-// Задаём направление вращения 
- /* if(dir) {
-    Serial.println("* Clockwise directrion >>>");
-    smartTable.setClockwiseDir(); }
-  else {
-    Serial.println("* CounterClockwise directrion <<<");
-    smartTable.setCounterClockwiseDir(); }*/
-    
   while(1) {
     if(dir) 
       smartTable.stepRight();
@@ -105,25 +109,30 @@ void rotateT(bool dir) {
   Serial.println("=== Clockwise move func end ===");
 }
 
-void RotorTableR::scan(bool dir)
+void scan(bool dir)
 {
 // Для каждого из необходимого количества снимков...
   for (int i = 0; i < SHOTS_COUNT; ++i) {
-    if(!_scanStopFlag) {
+    if(!scanStopFlag) {
     // Поворачиваем столик на необходимое количество шагов
       if(dir)
-        stepRight();
+        smartTable.stepRight();
       if(!dir)
-        stepLeft();
-      if(irrecv.decode( &_irRes ) && _irRes.value == B_STOP) {
+        smartTable.stepLeft();
+      irConsole.decode( &irRes );
+      Serial.println(irRes.value, HEX);
+      Serial.println("Stop try");
+      if(irConsole.decode( &irRes ) && irRes.value == B_STOP) {
         Serial.println("Stop try");
-        stopScan();
+        scanStopFlag = true;
+        smartTable.turnOff();
       }
-      irrecv.resume();
+      irConsole.resume();
     }
   }
   
 // После завершения съёмки отключаем двигатель
- digitalWrite(_enablePin, LOW);
+ scanStopFlag = false;
+ smartTable.turnOff();
 }
 
