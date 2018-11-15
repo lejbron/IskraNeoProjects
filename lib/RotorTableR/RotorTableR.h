@@ -32,8 +32,8 @@ class RotorTableR
 		void stepRight();
 		void stepLeft();
 		/*void rightScan(IRrecv irrecv);
-		void leftScan(IRrecv irrecv);
-		void stopScan();*/
+		void leftScan(IRrecv irrecv);*/
+		void stopScan();
 		
 	
 	private:

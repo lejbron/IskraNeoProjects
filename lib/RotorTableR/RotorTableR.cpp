@@ -45,6 +45,7 @@ void RotorTableR::setCounterClockwiseDir()
 
 void RotorTableR::turnOff()
 {
+	digitalWrite(_stepPin, LOW);
 	digitalWrite(_enablePin, LOW);
 }
 
@@ -52,7 +53,7 @@ void RotorTableR::stepRight() {
   Serial.println("=== Clockwise step func entered ===");
 // Задаём направление вращения по часовой стрелке
   digitalWrite(_enablePin, HIGH);
-  digitalWrite(_directionPin, HIGH);
+  digitalWrite(_directionPin, LOW);
  
 // Делаем STEP_COUNT шагов
   for (int i = 0; i < STEP_COUNT; ++i) 
@@ -66,7 +67,7 @@ void RotorTableR::stepLeft() {
   Serial.println("=== CounterClockwise step func entered ===");
   //Задаём направление вращения против часовой стрелки
   digitalWrite(_enablePin, HIGH);
-  digitalWrite(_directionPin, LOW);
+  digitalWrite(_directionPin, HIGH);
  
 // Делаем STEP_COUNT шагов
   for (int i = 0; i < STEP_COUNT; ++i) 
@@ -76,7 +77,7 @@ void RotorTableR::stepLeft() {
   Serial.println("=== CounterClockwise step func end ===");
 }
 
-/*void RotorTableR::stopScan()
+void RotorTableR::stopScan()
 {
 	Serial.println("Stop func entered");
 	_scanStopFlag = true;
@@ -84,7 +85,7 @@ void RotorTableR::stepLeft() {
 	digitalWrite(_enablePin, LOW);
 }
 
-void RotorTableR::rightScan(IRrecv irrecv)
+/*void RotorTableR::rightScan(IRrecv irrecv)
 {
 	_scanStopFlag = false;
 	scan(true, irrecv);
