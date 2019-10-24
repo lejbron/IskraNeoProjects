@@ -23,8 +23,8 @@ int led_pin = 13;
 int fc28DigitalPin1 = 1;
 int fc28DigitalPin2 = 2;
 
-int fc28AnalogPin1 = A0;
-int fc28AnalogPin2 = A1;
+int fc28AnalogPin1 = A1;
+int fc28AnalogPin2 = A2;
 
 DHT dht(DHTPIN, DHT11);
 
@@ -55,11 +55,10 @@ void setup()
 
 void loop()
 {
-
-  /*lcd.setCursor(0, 2);
-  lcd.print("     4 lines");
-  lcd.setCursor(0, 3);
-  lcd.print(" http://amperkot.ru");*/
+ getFC28AnalogData(fc28AnalogPin1);
+ delay(1000);
+ getFC28AnalogData(fc28AnalogPin2);
+ delay(1000);
 }
 
 void click1() {

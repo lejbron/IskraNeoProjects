@@ -1,10 +1,14 @@
 /*
-
+  Parts:
+	 - x1 https://amperka.ru/product/display-lcd-text-20x4-i2c-3v3-black-on-green
+	 - x1 https://amperka.ru/product/troyka-relay
+	 - x1 https://amperka.ru/product/arduino-troyka-shield
+	 - x1 https://amperka.ru/product/troyka-temperature-humidity-sensor-dht11
+	 - x2 https://amperka.ru/product/soil-moisture-sensor
 	 - x2 http://amperka.ru/product/solenoid-valve-normally-open
 	 - x2 http://amperka.ru/product/troyka-mosfet-v2
 	 - x2 http://rushim.ru/product_info.php?products_id=633
 	 - x2 http://rushim.ru/product_info.php?products_id=2246
-
 */
 
 #include "DHT.h"
@@ -15,7 +19,8 @@
 
 /*=========SETTINGS=========*/
 #define DEBUG false
-#define CRITICAL_MOS 45
+#define MINT_CRITICAL_MOS 45
+#define ARAUCARIA_CRITICAL_MOS 45
 #define VOLUME 20000
 /*=========SETTINGS=========*/
 
@@ -70,19 +75,19 @@ void setup()
 
 void loop()
 {
-  if (mint.getMositure() < CRITICAL_MOS)
+  if (mint.getMositure() < MINT_CRITICAL_MOS)
   {
-    irrigation(mint);
+    irrigation(mint, MINT_CRITICAL_MOS);
     delay(500);
     lcd.clear();
     sensorsData();
   }
 
-  delay (500);
+  delay (1000);
 
-  if (araucaria.getMositure() < CRITICAL_MOS)
+  if (araucaria.getMositure() < ARAUCARIA_CRITICAL_MOS)
   {
-    irrigation(araucaria);
+    irrigation(araucaria, ARAUCARIA_CRITICAL_MOS);
     delay(500);
     lcd.clear();
     sensorsData();
@@ -109,7 +114,7 @@ void sensorsData()
   printChargeVolume();
 }
 
-void irrigation(IPlant plant)
+void irrigation(IPlant plant, int critical_mos)
 {
   lcd.clear();
 
@@ -128,7 +133,7 @@ void irrigation(IPlant plant)
     delay(1000);
     plant.waterPlant(VOLUME);
     delay(1000);
-  } while(plant.getMositure() < CRITICAL_MOS);
+  } while(plant.getMositure() < critical_mos);
 
   digitalWrite(RELAY_PIN, LOW);
 
@@ -140,9 +145,9 @@ void irrigation(IPlant plant)
 
 void getDHT11Data()
 {
-  float h = dht.readHumidity(); //Измеряем влажность
-  float t = dht.readTemperature(); //Измеряем температуру
-  if (isnan(h) || isnan(t)) {  // Проверка. Если не удается считать показания, выводится «Ошибка считывания», и программа завершает работу
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+  if (isnan(h) || isnan(t)) {
     lcd.print("Reading error");
     if(DEBUG == true)
       Serial.println("Reading error");
@@ -163,11 +168,11 @@ void printChargeVolume()
   int charge = analogRead(BATTERY_PIN);
 
   Serial.print(charge);
-  
+
   lcd.setCursor(17, 0);
   lcd.print((int)(charge/10));
   lcd.print("%");
-  
+
   /*if (charge < 100)
   {
     lcd.print("\x9f");
