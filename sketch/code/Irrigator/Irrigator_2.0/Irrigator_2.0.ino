@@ -42,10 +42,6 @@ int mosfetPin1 = 5;
 int mosfetPin2 = 6;
 
 LiquidCrystal_I2C lcd(0x27,20,4);
-
-
-bool f_stop=false;
-
 /*=============PINS=============*/
 
 /*==================================PLANTS==================================*/
@@ -57,7 +53,7 @@ IPlant araucaria(fc28_plant_pin2, fc28DigitalPin2, mosfetPin2, "Araucaria");
 
 void setup()
 {
-	Serial.begin(9600);
+	//Serial.begin(9600);
 
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(RELAY_PIN, LOW);
