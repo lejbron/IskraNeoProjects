@@ -9,13 +9,13 @@
 
 #include "OneButton.h" 
 
-OneButton button1(A1, true);
-//OneButton button2(A2, true);
+OneButton button1(A4, true);
+OneButton button2(A5, true);
 
-int mosfetPin1 = 1;    // Connect the MOSFeT Gate (first pin on the left, when writing on the chip is facing you) to Arduino pin 2
-//int mosfetPin2 = 2;
+int mosfetPin1 = 11;    // Connect the MOSFeT Gate (first pin on the left, when writing on the chip is facing you) to Arduino pin 2
+int mosfetPin2 = 12;
 
-int volume = 60000;
+int volume = 7000;
 
 void setup()
 {
@@ -23,27 +23,36 @@ void setup()
   Serial.begin(9600);
 	
   button1.attachClick(click1); // открыть клапан 1-ой колбы
-  //button2.attachClick(click2); // открыть клапан 2-ой колбы 
+  button2.attachClick(click2); // открыть клапан 2-ой колбы 
   button1.attachDoubleClick(doubleclick1); // увеличить время ожидания
-  //button2.attachDoubleClick(doubleclick2); // уменьшить время ожидания
+  button2.attachDoubleClick(doubleclick2); // уменьшить время ожидания
   
   pinMode(mosfetPin1, OUTPUT);
-  //pinMode(mosfetPin2, OUTPUT);
+  pinMode(mosfetPin2, OUTPUT);
   
   digitalWrite(mosfetPin1, LOW);
-  //digitalWrite(mosfetPin2, LOW);
+  digitalWrite(mosfetPin2, LOW);
 }
 
 void loop()
 {
   button1.tick();
-  //button2.tick();
+  button2.tick();
 }
 
 void click1() {
  digitalWrite(mosfetPin1, HIGH);
  delay(volume); 
  digitalWrite(mosfetPin1, LOW);
+ Serial.println("First flusk with ");
+ Serial.println(volume); 
+ Serial.println("ms constnat");
+}
+
+void click2() {
+ digitalWrite(mosfetPin2, HIGH);
+ delay(volume); 
+ digitalWrite(mosfetPin2, LOW);
  Serial.println("First flusk with ");
  Serial.println(volume); 
  Serial.println("ms constnat");
@@ -56,16 +65,11 @@ void doubleclick1() {
  Serial.println("ms"); 
 }
 
-/*void click2() {
- digitalWrite(mosfetPin2, HIGH);
- delay(volume); 
- digitalWrite(mosfetPin2, LOW); 
- Serial.println("Second flusk with " + volume + "ms constnat");
-}
-
 void doubleclick2() {
- volume -= 10;
- Serial.println("Current time: " + volume + "ms"); 
-}*/
+ volume -= 1000;
+ Serial.println("Current time: ");
+ Serial.println(volume);
+ Serial.println("ms"); 
+}
 
 /*lejbron*/

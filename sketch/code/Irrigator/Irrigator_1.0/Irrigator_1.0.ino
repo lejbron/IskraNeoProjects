@@ -1,111 +1,144 @@
-/* Калибровка подачи pH+/pH- в раствор
+/*
 
 	 - x2 http://amperka.ru/product/solenoid-valve-normally-open
 	 - x2 http://amperka.ru/product/troyka-mosfet-v2
 	 - x2 http://rushim.ru/product_info.php?products_id=633
 	 - x2 http://rushim.ru/product_info.php?products_id=2246
-	   
+
 */
 
-#include "OneButton.h"
-#include "DHT.h" 
+#include "DHT.h"
+#include "Wire.h"
+#include "LiquidCrystal_I2C.h"
 
-#define DHTPIN 0
+#include "IPlant.h"
 
-OneButton button1(A4, true);
-OneButton button2(A5, true);
+/*=========SETTINGS=========*/
+#define DEBUG false
+#define CRITICAL_MOS 45
+#define VOLUME 20000
+/*=========SETTINGS=========*/
 
-int led_pin = 13;
+/*=============PINS=============*/
+#define DHTPIN 7
+#define RELAY_PIN 2
 
-int fc28DigitalPin1 = 1;
-int fc28DigitalPin2 = 2;
+//fc28 analog pins
+int fc28_plant_pin1 = A1;
+int fc28_plant_pin2 = A2;
 
-int fc28AnalogPin1 = A1;
-int fc28AnalogPin2 = A2;
+int fc28DigitalPin1 = 5;
+int fc28DigitalPin2 = 6;
 
 DHT dht(DHTPIN, DHT11);
 
+int mosfetPin1 = 0;
+int mosfetPin2 = 1;
+
+LiquidCrystal_I2C lcd(0x27,20,4);
+
+
+bool f_stop=false;
+
+/*=============PINS=============*/
+
+/*==================================PLANTS==================================*/
+
+IPlant mint(fc28_plant_pin1, fc28DigitalPin1, mosfetPin1, "Mint");
+IPlant araucaria(fc28_plant_pin2, fc28DigitalPin2, mosfetPin2, "Araucaria");
+
+/*==================================PLANTS==================================*/
+
 void setup()
 {
-  // открываем последовательный порт для мониторинга действий в программе
-  Serial.begin(9600);
-	
-  button1.attachClick(click1); // get 1st fc28 data and DHT11 data
-  button2.attachClick(click2); // get 2nd fc28 data
-  //button1.attachDoubleClick(doubleclick1); 
-  //button2.attachDoubleClick(doubleclick2); 
+  if (DEBUG == true)
+	{
+		Serial.begin(9600);
+	}
 
-  pinMode(led_pin, OUTPUT);
-  pinMode(fc28DigitalPin1, INPUT);
-  pinMode(fc28DigitalPin2, INPUT);
+  pinMode(RELAY_PIN, OUTPUT);
+  digitalWrite(RELAY_PIN, LOW);
 
   dht.begin();
+  
+  pinMode(mosfetPin1, OUTPUT);
+  pinMode(mosfetPin2, OUTPUT);
+
+  /*digitalWrite(mosfetPin1, LOW);
+  digitalWrite(mosfetPin2, LOW);*/
 }
 
 void loop()
 {
-  button1.tick();
-  button2.tick();
-}
-
-void click1() {
- getFC28AnalogData(fc28AnalogPin1);
- delay(1000);
- getFC28DigitalData(fc28DigitalPin1);
- delay(1000);
- getDHT11Data();
-}
-
-void click2() {
- getFC28AnalogData(fc28AnalogPin2);
- delay(1000);
- getFC28DigitalData(fc28DigitalPin2);
- delay(1000);
-}
-
-void getFC28AnalogData(int sensor_pin)
-{
-  int output_value;
-  
-  output_value= analogRead(sensor_pin);
-  output_value = map(output_value,550,10,0,100);
-  Serial.print("Mositure : ");
-  Serial.print(output_value);
-  Serial.println("%");
-}
-
-void getFC28DigitalData(int sensor_pin)
-{
-  if(digitalRead(sensor_pin) == HIGH){
-    digitalWrite(led_pin, HIGH);
-  } else {
-    digitalWrite(led_pin, LOW);
+  if (!f_stop)
+  {
+    //delay(3000);
+    //sensorsData();
+    f_stop = true;  
   }
+  digitalWrite(RELAY_PIN, LOW);
+}
+
+void sensorsData()
+{
+  lcd.init();
+  
+  lcd.setCursor(0, 2);
+  lcd.print(mint.getName());
+  lcd.print(" mos: ");
+  lcd.print(mint.getMositure());
+
+  lcd.setCursor(0, 3);
+  lcd.print(araucaria.getName());
+  lcd.print(" mos: ");
+  lcd.print(araucaria.getMositure());
+
+  getDHT11Data();
+
+  lcd.noDisplay();
+  digitalWrite(RELAY_PIN, LOW);
+}
+
+void irrigation()
+{
+
+    if(mint.getMositure() < CRITICAL_MOS)
+      mint.waterPlant(RELAY_PIN, VOLUME);
+    if(araucaria.getMositure() < CRITICAL_MOS)
+      araucaria.waterPlant(RELAY_PIN, VOLUME);
+
 }
 
 void getDHT11Data()
 {
+  dht.begin();
+
   float h = dht.readHumidity(); //Измеряем влажность
   float t = dht.readTemperature(); //Измеряем температуру
   if (isnan(h) || isnan(t)) {  // Проверка. Если не удается считать показания, выводится «Ошибка считывания», и программа завершает работу
-    Serial.println("Ошибка считывания");
+    lcd.print("Reading error");
+    if(DEBUG == true)
+      Serial.println("Reading error");
   }
-  Serial.print("Влажность: ");
-  Serial.print(h);
-  Serial.print(" %\t");
-  Serial.print("Температура: ");
-  Serial.print(t);
-  Serial.println(" *C "); //Вывод показателей на экран
-}
+  else {
+    lcd.setCursor(0, 0);
+    lcd.print("Air: ");
+    lcd.print((int)h);
+    lcd.print(" %");
+    lcd.print(" T: ");
+    lcd.print((int)t);
+    lcd.print("C");
 
-/*void doubleclick1() {
- Serial.println("Current time: ");
- Serial.println(volume);
- Serial.println("ms"); 
+    if(DEBUG == true)
+    {
+      Serial.print("Влажность: ");
+      Serial.print(h);
+      Serial.print(" %\t");
+      Serial.print("Температура: ");
+      Serial.print(t);
+      Serial.println(" *C ");
+    }
+  }
 }
-void doubleclick2() {
- volume -= 10;
- Serial.println("Current time: " + volume + "ms"); 
-}*/
 
 /*lejbron*/
