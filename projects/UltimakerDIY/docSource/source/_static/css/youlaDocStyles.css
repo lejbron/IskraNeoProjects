@@ -18,6 +18,10 @@ th.head {
   text-align: center;
 }
 
+.youla-logo:before {
+	content: url(web_logo.png);
+}
+
 .admonition.important .admonition-title {
   background-color: crimson;
 }

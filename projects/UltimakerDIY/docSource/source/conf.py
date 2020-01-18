@@ -1,28 +1,18 @@
 # -*- coding: utf-8 -*-
 #
-# Configuration file for the Sphinx documentation builder.
-#
-# This file does only contain a selection of the most common options. For a
-# full list see the documentation:
-# http://www.sphinx-doc.org/en/master/config
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
 
-# -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-
-import sphinx_bootstrap_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'Melty Docs'
-copyright = '2020, lejbron'
-author = ''
+project = 'youla'
+copyright = '2019, youla'
+author = 'Solntsev Alexey'
 
 # The short X.Y version
-version = ''
+version = '2.7'
 # The full version, including alpha/beta/rc tags
 release = '1'
 
@@ -31,18 +21,18 @@ release = '1'
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #
-needs_sphinx = '1.8.5'
+# needs_sphinx = '1.0'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.intersphinx',
-    'sphinxcontrib.images',
+    'sphinx.ext.todo',
+    'sphinx.ext.githubpages',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+#templates_path = ['_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -58,15 +48,15 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'en'
+language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+# This pattern also affects html_static_path and html_extra_path .
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = None
+pygments_style = 'sphinx'
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -75,19 +65,11 @@ pygments_style = None
 # a list of builtin themes.
 #
 
-html_theme = 'bootstrap'
-html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
-
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {
-'bootswatch_theme' : 'yeti',
-'navbar_site_name' : 'CI',
-'navbar_sidebarrel' : 'false',
-'source_link_position' : 'no'
-}
+#html_theme_options = {}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -102,23 +84,16 @@ html_static_path = ['_static']
 # default: ``['localtoc.html', 'relations.html', 'sourcelink.html',
 # 'searchbox.html']``.
 #
-#html_sidebars = {'**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html']}
+# html_sidebars = {}
 
+#---sphinx-themes-----
+html_theme = "ydoc_theme"
+html_logo = "_static/css/web_logo.png"
 
-# -- Options for HTMLHelp output ---------------------------------------------
+html_theme_options = {
+'logo_only':'true'
+}
 
-# Output file base name for HTML help builder.
-htmlhelp_basename = 'youla-CIdoc'
 
 def setup(app):
-    app.add_stylesheet('css/meltyDocs.css')
-    app.add_stylesheet('css/ctooltip.css')
-
-#def setup(app):
-#    app.add_javascript('js/youlaDocJS_CI.js')
-# -- Extension configuration -------------------------------------------------
-
-# -- Options for intersphinx extension ---------------------------------------
-
-# Example configuration for intersphinx: refer to the Python standard library.
-# intersphinx_mapping = {'https://docs.python.org/': None}
+    app.add_stylesheet('css/youlaDocStyles.css')
