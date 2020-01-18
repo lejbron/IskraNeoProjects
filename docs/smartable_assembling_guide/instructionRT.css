@@ -1,0 +1,145 @@
+:root {
+  --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+/* Modal Content Behaviour */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    /*z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+  /*  background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-dialog{
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 700px;
+}
+
+.modal-body {
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    /*color: #00ffff;*/
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal Content Behaviour */
+
+/* Images */
+
+.parts {
+  border-radius: 8px;
+	padding: 5px;
+}
+.parts:hover {opacity: 0.7;}
+
+.firstPoint {
+  margin-left: 40px;
+}
+
+.photoRowOffset {
+  margin-left: 3px;
+}
+
+.rotorTable {
+  width: 450px;
+	height: 400px;
+}
+
+.bigPhoto {
+  width: 600px;
+	height: 350px;
+}
+
+.bigNarrowPhoto {
+  width: 300px;
+	height: 350px;
+}
+
+.mediumNarrowPhoto {
+  width: 200px;
+	height: 250px;
+}
+
+.mediumWidePhoto {
+  width: 600px;
+	height: 300px;
+}
+
+.smallPhoto {
+  width: 600px;
+	height: 200px;
+}
+
+.modalPhoto {
+  width: 100%; /* Full width */
+  height: 100%;
+}
+
+.img-fluid {
+  height: : 100% \9;
+  width: 100% \9;
+}
+
+/* Images */

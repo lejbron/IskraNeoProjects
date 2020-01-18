@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Interactive assembling instruction">
+    <meta name="author" content="lejbron">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Rotary table assembling instruction</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="instructionRT.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">О проекте</h4>
+              <p class="text-muted">
+                Инструкиция по сборке поворотного стола для 3d-фотосъёмки
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Контакты</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="mailto:prplfish@yandex.ru?Subject=Hello%20again" target="_top">
+                    <i class="fas fa-envelope-open"> </i>
+                    Напишите автору
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/lejbron" class="text-white">
+                    <!-- <i class="fas fa-github-square"> </i> -->
+                    lejbron
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg> -->
+            <strong>SmarTable</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Поворотный стол для 3d-фотосъёмки</h1>
+          <!-- <img id="jmbH" src="img/RotaryTable.jpg" alt="RotaryTable" class="parts rotorTable" onclick=showModal(this)> -->
+          <!-- The Modal -->
+      		<!-- <div id="jmbHModal" class="modal">
+      		  <span class="close" onclick=closeModal(this)>&times;</span>
+      		  <img class="modal-content">
+      		  <div class="caption"></div>
+      		</div> -->
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-8 offset-lg-2">
+              <h2> Что это? </h2>
+                <p class="lead text-justify">
+                  При необходимости получить трехмерную модель объекта методом
+                  3d-фотосъемки для повышения качества результата и упрощения
+                  процесса используют поворотный стол – автоматически вращающуюся на
+                  360 градусов платформу. На рынке представлено большое разнообразие
+                  моделей разного размера и сложности реализации, но в целом
+                  устройство представляет собой сочетание простейших компонентов,
+                  повторить и собрать свой вариант которого сможет каждый
+                  заинтересовавшийся любитель!
+                </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-8 offset-lg-2">
+              <h2> Что нам понадобится? </h2>
+              <div class="col-12">
+                <h4> Основные детали: </h2>
+                  <ol>
+                    <li> Столешница </li>
+                    <li>
+                      <a href="http://amperka.ru/product/iskra-neo">
+                        IskraNeo
+                      </a>
+                    </li>
+                    <li>
+                      <a href="http://amperka.ru/collection/stepper-motor/product/stepper-motor-ldo-28sth45-0674a">
+                        Биполярный шаговый двигатель
+                      </a>
+                    </li>
+                    <li>
+                      <a href="http://amperka.ru/product/troyka-stepper-motor-driver">
+                        Драйвер шагового двигателя
+                      </a>
+                    </li>
+                    <li>
+                      <a href="http://amperka.ru/product/ir-remote-control">
+                        ИК-пульт
+                      </a>
+                    </li>
+                    <li>
+                      <a href="http://amperka.ru/product/ir-receiver">
+                        ИК-приемник
+                      </a>
+                    </li>
+                    <li>
+                      <a href="http://amperka.ru/product/ac-dc-rs-25-12">
+                        Блок питания 12V
+                      </a>
+                    </li>
+                  </ol>
+              </div>
+              <div class="col-12">
+                <h4> Алюминевый профиль: </h2>
+                  <ol>
+                    <li>
+                      <a href="https://www.soberizavod.ru/catalog/alyuminievyy_profil_seriya_20_bez_pokrytiya/profil_konstruktsionnyy_20_kh_20_bez_pokrytiya_/">
+                        20x20x150 I-Typ Nut 5
+                      </a> - x1
+                    </li>
+                    <li>
+                      <a href="https://www.soberizavod.ru/catalog/alyuminievyy_profil_seriya_20_bez_pokrytiya/profil_konstruktsionnyy_20_kh_20_bez_pokrytiya_/">
+                        20x20x260 I-Typ Nut 5
+                      </a> - x2
+                    </li>
+                    <li>
+                      <a href="https://www.soberizavod.ru/catalog/alyuminievyy_profil_seriya_20_bez_pokrytiya/profil_konstruktsionnyy_20_kh_40_bez_pokrytiya_/">
+                        20x40x150 I-Typ Nut 5
+                      </a> - x6
+                    </li>
+                  </ol>
+              </div>
+              <div class="col-12">
+                <h4> Детали, распечатанные на 3d-принтере: </h2>
+                  <ol>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%A3%D0%B3%D0%BB%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%BA%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%86%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5.stl">
+                        Угловое крепление цельное
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%A3%D0%B3%D0%BB%D0%BE%D0%B2%D0%BE%D0%B5%20%D0%BA%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%BE%D1%82%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%B8%D0%B5%D0%BC.stl">
+                        Угловое крепление с отверстием
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%A1%D0%BE%D0%B5%D0%B4%D0%B8%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%20%D1%86%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D1%80%D0%B0%D0%B2%D1%8B%D0%B9%20(%D1%852).stl">
+                        Соединитель центральный правый
+                      </a> -x2
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%A1%D0%BE%D0%B5%D0%B4%D0%B8%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%20%D1%86%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BB%D0%B5%D0%B2%D1%8B%D0%B9%20(%D1%852).stl">
+                        Соединитель центральный левый
+                      </a> - x2
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%9A%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%86%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D0%BF%D0%BB%D0%B0%D0%BD%D0%BA%D0%B8%20(%D1%852).stl">
+                        Крепление центральной планки
+                      </a> - x2
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%9A%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%BB%D0%B0%D1%82%D1%8B.stl">
+                        Крепление для управляющей платы (Iskra Neo)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%9A%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%B2%D0%B8%D0%B3%D0%B0%D1%82%D0%B5%D0%BB%D1%8F.stl">
+                        Крепление двигателя
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%9A%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%BB%D0%BE%D0%BA%D0%B0%20%D0%BF%D0%B8%D1%82%D0%B0%D0%BD%D0%B8%D1%8F.stl">
+                        Крепление для блока питания
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%9A%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D0%B5%D1%80%D0%B0%20%D0%B4%D0%B2%D0%B8%D0%B3%D0%B0%D1%82%D0%B5%D0%BB%D1%8F.stl">
+                        Крепление драйвера двигателя
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%A1%D1%82%D1%8F%D0%B6%D0%BA%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BE%D0%B2%20(%D1%853).stl">
+                        Стяжка проводов
+                      </a> - x3
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%A8%D0%B5%D1%81%D1%82%D0%B5%D1%80%D0%B5%D0%BD%D0%BA%D0%B0%20%D1%81%20%D0%BA%D1%80%D0%B5%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%20%D0%BA%20%D1%81%D1%82%D0%BE%D0%BB%D0%B5%D1%88%D0%BD%D0%B8%D1%86%D0%B5.stl">
+                        Шестеренка с креплением к столешнице
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/lejbron/IskraNeoProjects/blob/master/projects/Rotary%20Table%20for%203D-photo/parts(stl)/%D0%A8%D0%B5%D1%81%D1%82%D0%B5%D1%80%D0%B5%D0%BD%D0%BA%D0%B0%20%D0%BD%D0%B0%20%D0%B2%D0%B0%D0%BB%20%D0%B4%D0%B2%D0%B8%D0%B3%D0%B0%D1%82%D0%B5%D0%BB%D1%8F.stl">
+                        Шестеренка на вал двигателя
+                      </a>
+                    </li>
+                  </ol>
+              </div>
+              <div class="col-12">
+                <h4> Фурнитура: </h2>
+                  <ol>
+                    <li>
+                      <a href="http://www.rsi-llc.ru/catalog/136/1002/">
+                        Винт M4X8 DIN912
+                      </a> - x52
+                    </li>
+                    <li>
+                      <a href="http://www.rsi-llc.ru/catalog/85/260/">
+                        Т-гайка М4, паз 6, H29
+                      </a>
+                    </li>
+                    <li>
+                      Ходовой вал d=8mm L=52mm
+                    </li>
+                    <li>
+                      <a href="https://alekspodshipnik.ru/katalog-produkczii/vidy-podshipnikov/sharikovyij/sharikovyij-radialnyij-odnoryadnyij/688-2rs.html">
+                        Подшипники D16 d8 h5
+                      </a> - x2
+                    </li>
+                    <li>
+                      <a href="https://alekspodshipnik.ru/katalog-produkczii/vidy-podshipnikov/sharikovyij/sharikovyij-radialnyij-odnoryadnyij/698-zz-(1000098-zz).html">
+                        Подшипники D19 d8 h6
+                      </a> - x6
+                    </li>
+                    <li>
+                      Шайбы
+                    </li>
+                    <li>
+                      <a href="http://fischer-market.ru/vint-din-7985-8x45">
+                        Винт M8x45
+                      </a> - x6
+                    </li>
+                    <li>
+                      Гайка M8 - x6
+                    </li>
+                    <li>
+                      <a href="http://fischer-market.ru/vint-din-912">
+                        Винт M3X8
+                      </a> - x4
+                    </li>
+                    <li>
+                      Кнопка-выключатель
+                    </li>
+                    <li>
+                      Провода
+                    </li>
+                  </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-8 offset-lg-2">
+              <h2> Как это собрать? </h2>
+              <ol>
+                <li>
+                  Боковые детали: <br>
+                  <img id="aInst1" src="img/SideDetails.jpg" alt="SideDetails" class="parts firstPoint bigPhoto img-fluid" onclick=showModal(this)>
+                  <div id="aInstModal1" class="modal">
+              		  <span class="close" onclick=closeModal(this)>&times;</span>
+              		  <img class="modal-content">
+              		  <div class="caption"></div>
+              		</div>
+                  <ul>
+                    <li>
+                      Вкрутите в центральное отверстие углового крепления винт М8Х35 и наденьте на него шайбу-подшипник D19-шайбу-гайку M8 и закрутите гайку до упора: <br>
+                      <div class="row photoRowOffset">
+                        <div class="col-xs-6">
+                          <img id="aInst2" src="img/CornerMount1.jpg" alt="CornerMount" class="parts mediumNarrowPhoto img-fluid" onclick=showModal(this)>
+                      		<div id="aInstModal2" class="modal">
+                      		  <span class="close" onclick=closeModal(this)>&times;</span>
+                      		  <img class="modal-content">
+                      		  <div class="caption"></div>
+                      		</div>
+                        </div>
+                        <div class="col-xs-6">
+                          <img id="aInst3" src="img/CornerMount2.jpg" alt="CornerMount" class="parts mediumNarrowPhoto img-fluid" onclick=showModal(this)>
+                      		<div id="aInstModal3" class="modal">
+                      		  <span class="close" onclick=closeModal(this)>&times;</span>
+                      		  <img class="modal-content">
+                      		  <div class="caption"></div>
+                      		</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      Прикрутите детали профиля 20Х40 к угловым креплениям с помощью винтов M4X8 и Т-гаек M4: <br>
+                      <img id="aInst4" src="img/SideDetail1.jpg" alt="SideDetailConnection" class="parts smallPhoto img-fluid" onclick=showModal(this)>
+                      <div id="aInstModal4" class="modal">
+                        <span class="close" onclick=closeModal(this)>&times;</span>
+                        <img class="modal-content">
+                        <div class="caption"></div>
+                      </div>
+                      <img id="aInst5" src="img/SideDetail2.jpg" alt="SideDetailConnection" class="parts smallPhoto img-fluid" onclick=showModal(this)>
+                      <div id="aInstModal5" class="modal">
+                        <span class="close" onclick=closeModal(this)>&times;</span>
+                        <img class="modal-content">
+                        <div class="caption"></div>
+                      </div>
+                    </li>
+                    <li>
+                      Повторите процесс сборки для получения второй боковой детали: <br>
+                      <img id="aInst6" src="img/SideDetail3.jpg" alt="SideDetailConnection" class="parts mediumWidePhoto img-fluid" onclick=showModal(this)>
+                      <div id="aInstModal6" class="modal">
+                        <span class="close" onclick=closeModal(this)>&times;</span>
+                        <img class="modal-content">
+                        <div class="caption"></div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              <li>
+                Центральная деталь: <br>
+                <img id="aInst7" src="img/CentralPart0.jpg" alt="CentralPartConnection" class="parts firstPoint mediumWidePhoto img-fluid" onclick=showModal(this)>
+                <div id="aInstModal7" class="modal">
+                  <span class="close" onclick=closeModal(this)>&times;</span>
+                  <img class="modal-content">
+                  <div class="caption"></div>
+                </div>
+
+                <ul>
+                  <li>
+                    Соедините центральное левое и центральное правое крепление профилем 20Х40: <br>
+                    <img id="aInst8" src="img/CentralPart1.jpg" alt="CentralPartConnection" class="parts mediumWidePhoto img-fluid" onclick=showModal(this)>
+                    <div id="aInstModal8" class="modal">
+                      <span class="close" onclick=closeModal(this)>&times;</span>
+                      <img class="modal-content">
+                      <div class="caption"></div>
+                    </div>
+                  </li>
+                  <li>
+                    Повторите процесс сборки для получения аналогичной детали: <br>
+                    <img id="aInst9" src="img/CentralPart2.jpg" alt="CentralPartConnection" class="parts bigPhoto img-fluid" onclick=showModal(this)>
+                    <div id="aInstModal9" class="modal">
+                      <span class="close" onclick=closeModal(this)>&times;</span>
+                      <img class="modal-content">
+                      <div class="caption"></div>
+                    </div>
+                  </li>
+                  <li>
+                    Вложите детали профиля 20Х20Х260 в пазы и закрепите винтами M4X8 и Т-гайками: <br>
+                    <img id="aInst10" src="img/CentralPart3.jpg" alt="CentralPartConnection" class="parts bigPhoto img-fluid" onclick=showModal(this)>
+                    <div id="aInstModal10" class="modal">
+                      <span class="close" onclick=closeModal(this)>&times;</span>
+                      <img class="modal-content">
+                      <div class="caption"></div>
+                    </div>
+                  </li>
+                  <li>
+                    Закрепите вторую деталь на противоположных концах деталей профиля 20Х20Х260: <br>
+                    <img id="aInst11" src="img/CentralPart4.jpg" alt="CentralPartConnection" class="parts bigPhoto img-fluid" onclick=showModal(this)>
+                    <div id="aInstModal11" class="modal">
+                      <span class="close" onclick=closeModal(this)>&times;</span>
+                      <img class="modal-content">
+                      <div class="caption"></div>
+                    </div>
+                  </li>
+                  <li>
+                    Закрепите на детали профиля 20Х20Х150 крепление двигателя и
+                    два крепления центральной планки с помощью винтов M4X8 и
+                    Т-гаек, закрепите шестерёнку <br> на вале двигателя и прикрутите
+                    его к креплению: <br>
+                    <img id="aInst12" src="img/MotorPart.jpg" alt="CentralPartConnection" class="parts bigPhoto img-fluid" onclick=showModal(this)>
+                    <div id="aInstModal12" class="modal">
+                      <span class="close" onclick=closeModal(this)>&times;</span>
+                      <img class="modal-content">
+                      <div class="caption"></div>
+                    </div>
+                  </li>
+                  <li>
+                    С помощью винтов M4X8 и Т-гаек прикрутите крепления центральной
+                    планки к деталям профиля 20X20X260 (!соблюдая разметку!): <br>
+                    <img id="aInst13" src="img/CentralPart5.jpg" alt="CentralPartConnection" class="parts bigPhoto img-fluid" onclick=showModal(this)>
+                    <div id="aInstModal13" class="modal">
+                      <span class="close" onclick=closeModal(this)>&times;</span>
+                      <img class="modal-content">
+                      <div class="caption"></div>
+                    </div>
+                  </li>
+                </ul>
+
+              </li>
+              <li>
+                Прикрутите боковые детали, собранные на шаге 1, к центральным соединителям:
+                <img id="aInst14" src="img/TableFoundation.jpg" alt="Foundation" class="parts firstPoint rotorTable img-fluid" onclick=showModal(this)>
+                <div id="aInstModal14" class="modal">
+                  <span class="close" onclick=closeModal(this)>&times;</span>
+                  <img class="modal-content">
+                  <div class="caption"></div>
+                </div>
+              </li>
+              <li>
+                Hardware: <br>
+                <ul>
+                  <li>
+                    Подготовьте плату IskraNeo, драйвер шагового двигателя и ИК-приёмник: <br>
+                    <img id="aInst15" src="img/Hardware.jpg" alt="Hardware" class="parts bigPhoto img-fluid" onclick=showModal(this)>
+                    <div id="aInstModal15" class="modal">
+                      <span class="close" onclick=closeModal(this)>&times;</span>
+                      <img class="modal-content">
+                      <div class="caption"></div>
+                    </div>
+                  </li>
+                  <li>
+                    Подготовьте провода и клеммы для соединения устройств и подключения питания: <br>
+                    <img id="aInst16" src="img/Wires1.jpg" alt="Wires" class="parts bigPhoto img-fluid" onclick=showModal(this)>
+                    <div id="aInstModal17" class="modal">
+                      <span class="close" onclick=closeModal(this)>&times;</span>
+                      <img class="modal-content">
+                      <div class="caption"></div>
+                    </div>
+                  </li>
+                  <li>
+                    С помощью обжимных клещей и паяльника подготовьте следующие провода:
+                    <div class="row photoRowOffset">
+                      <div class="col-12 col-sm-12 col-lg-6">
+                        <img id="aInst17" src="img/Wires2.jpg" alt="Wires" class="parts bigNarrowPhoto img-fluid" onclick=showModal(this)>
+                        <div id="aInstModal17" class="modal">
+                          <span class="close" onclick=closeModal(this)>&times;</span>
+                          <img class="modal-content">
+                          <div class="caption"></div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-lg-6">
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <th scope="row" class="text-danger">1</th>
+                              <td>Питание IskraNeo и N драйвера двигателя</td>
+                            </tr>
+                            <tr>
+                              <th scope="row" class="text-success">2</th>
+                              <td>Подключение драйвера двигателя и ИК-приемника к IskraNeo ( +/- x4 и 4 провода, передающие сигнал)</td>
+                            </tr>
+                            <tr>
+                              <th scope="row" class="text-primary">3</th>
+                              <td>Кнопка включения платы и драйвера двигателя</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Подключите IskraNeo и драйвер двигателя к блоку питания согласно схеме: <br>
+                <img id="aInst18" src="img/Schematics.jpg" alt="Schematics" class="parts firstPoint rotorTable img-fluid" onclick=showModal(this)>
+                <div id="aInstModal18" class="modal">
+                  <span class="close" onclick=closeModal(this)>&times;</span>
+                  <img class="modal-content">
+                  <div class="caption"></div>
+                </div>
+              </li>
+              <li>
+                Вставьте в крепление двигателя подшипники D16. <br>
+              </li>
+              <li>
+                Закрутите вал в крепление с шестеренкой и закрепите его на столешнице. <br>
+              </li>
+              <li>
+                Вставьте столешницу с валом в подшипники: <br>
+                <img id="aInst19" src="img/RotaryTable.jpg" alt="Demonstration" class="parts firstPoint rotorTable img-fluid" data-toggle="modal" data-target="#aInst19Modal">
+                <!-- Modal -->
+                <div class="modal fade" id="aInst19Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <!-- 1:1 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-1by1">
+                          <iframe class="embed-responsive-item" src="img/demo.mp4"></iframe>
+                        </div>
+                      </div>
+                      <span class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <!-- <div class="row"> -->
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p class="float-left">
+          Made by <a href="https://github.com/lejbron">lejbron</a> &copy;
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <!-- <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script> -->
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="modalControlScript.js"></script>
+  </body>
+</html>

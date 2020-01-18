@@ -8,7 +8,7 @@ if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
 set SOURCEDIR=source
-set BUILDDIR=build
+set BUILDDIR=D:\Docs\SharedProjects\DIY\diyProjects\docs\melty_3d_guides
 
 if "%1" == "" goto help
 

@@ -5,7 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
-BUILDDIR      = build
+BUILDDIR      = D:\Docs\SharedProjects\DIY\diyProjects\docs\melty_3d_guides
 
 # Put it first so that "make" without argument is like "make help".
 help:
