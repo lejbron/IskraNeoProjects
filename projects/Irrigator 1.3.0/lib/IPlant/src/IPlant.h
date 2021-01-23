@@ -15,8 +15,9 @@ class IPlant
 	public:
 		IPlant(const byte fc28AnalogPin, const byte fc28DigitalPin,
 			const byte mosfetPin, String plant_name);
-    int getMositure();
+    	int getMositure();
 		void waterPlant(int volume);
+		String getName();
 
 	private:
 		int _fc28AnalogPin, _fc28DigitalPin, _mosfetPin;

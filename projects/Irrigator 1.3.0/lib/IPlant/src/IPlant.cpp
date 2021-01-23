@@ -22,7 +22,18 @@ IPlant::IPlant(const byte fc28AnalogPin, const byte fc28DigitalPin,
   }
 }
 
-void IPlant::getMositure()
+String IPlant::getName()
+{
+  if (DEBUG_MODE == true)
+  {
+    Serial.print(_plant_name);
+    Serial.println("%");
+  }
+
+  return _plant_name;
+}
+
+int IPlant::getMositure()
 {
   int mos_value;
 
@@ -44,5 +55,11 @@ void IPlant::waterPlant(int volume)
 {
   digitalWrite(_mosfetPin, HIGH);
   delay(volume);
-  digitalWrite(_mosfetPin, LOW);;
+  digitalWrite(_mosfetPin, LOW);
+  
+  if (DEBUG_MODE == true)
+  {
+    Serial.print(_plant_name);
+    Serial.println(" watered sucessfully.");
+  }
 }
